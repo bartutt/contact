@@ -1,0 +1,17 @@
+body{background-color: rgb(175, 175, 175); padding:2rem}
+
+*{
+    box-sizing: border-box;
+}
+
+input[type = "text"], textarea, input[type = "email"]{
+    resize: none;
+    width:100%;
+    border:none;
+    font-size: 1rem;
+    padding:1rem;
+    margin-top:1.5rem;
+    outline: none;
+    font-family: 'Raleway','Helvetica','Arial',sans-serif;
+    font-weight: 300;
+}
