@@ -4,6 +4,15 @@ body{background-color: rgb(175, 175, 175); padding:2rem}
     box-sizing: border-box;
 }
 
+@keyframes rotateSendingIcon {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
 input[type = "text"], textarea, input[type = "email"]{
     resize: none;
     width:100%;
@@ -15,3 +24,63 @@ input[type = "text"], textarea, input[type = "email"]{
     font-family: 'Raleway','Helvetica','Arial',sans-serif;
     font-weight: 300;
 }
+textarea{
+    height:10rem;
+}
+
+.invalid {
+    border-color: red;
+    background-color: rgb(255, 199, 199);
+    outline: none;
+    box-shadow: 0 0 2px red;
+}
+.valid {
+    border-color: #4dcc23;
+    background-color: rgb(198, 255, 198);
+    outline: none;
+    box-shadow: 0 0 2px #4dcc23;
+}
+
+.error-msg {
+    display:none;
+}
+
+
+.sending {
+    position: relative;
+    pointer-events: none;
+    opacity:0.5;
+}
+
+.sending::after {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-right-color: rgba(0,0,0,0.7);
+    transform: translate(-50%, -50%) rotate(0deg);
+    content:"";
+    animation: rotateSendingIcon 0.3s infinite linear;
+    z-index: 10;
+}
+
+.form-success {
+    text-align: center;
+    font-family: 'Raleway','Helvetica','Arial',sans-serif;
+    font-weight: 300;
+    font-size: 3rem;
+}
+.form-error {
+    text-align: center;
+    font-family: 'Raleway','Helvetica','Arial',sans-serif;
+    font-weight: 300;
+    font-size: 3rem;
+}
+
+.honey{
+    display:none;
+}
+
