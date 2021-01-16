@@ -1,6 +1,13 @@
 const form = document.querySelector("#contactForm");
-
 const inputs = document.querySelectorAll("[required]");
+const msg = document.querySelector("#message");
+
+
+// create characters counter
+const countMsg = document.createElement("div");
+countMsg.classList.add("count-msg");
+msg.after(countMsg);
+
 
 // SUPPORT - if javascript is disabled, then use HTML validation
 form.setAttribute("novalidate", true);
@@ -17,7 +24,7 @@ const deleteErrorTextField = function(input) {
         if (error.classList.contains("error-msg"))
             error.remove();
     }
-}
+};
 
 /*
 * 
@@ -34,7 +41,7 @@ const createErrorTextField = function(input, msg) {
     
     input.after(div);
 
-}
+};
 
 
 /*
@@ -51,7 +58,7 @@ const markErrorField = function(input, check) {
               
         deleteErrorTextField(input);
     }
-}
+};
 
 
 /*
@@ -68,7 +75,8 @@ const toggleErrorTextField = function(input, check) {
             error.style.setProperty("display", "none");
         }
     }
-}
+};
+
 
 /*
 * Check all inputs dynamically
@@ -79,8 +87,14 @@ for (const input of inputs) {
         markErrorField (e.target, !input.checkValidity());
         toggleErrorTextField(e.target, !input.checkValidity());
     })
-}
+};
 
+/*
+* Count message characters
+*/
+msg.addEventListener("input", e => {   
+    countMsg.innerText = msg.value.length + "/250";
+});
 
 
 /*
@@ -128,7 +142,7 @@ form.addEventListener("submit", e => {
             if (response.errors) {            
                 const idErrorFields = response.errors.map(input => `#${input}`);
                 const errorInputs = form.querySelectorAll(idErrorFields.join(","));
-
+                
                 for (const input of errorInputs) {
                     markErrorField(input, true);
                     createErrorTextField(input, input.dataset.textError);
